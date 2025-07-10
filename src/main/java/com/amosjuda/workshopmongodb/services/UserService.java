@@ -1,6 +1,7 @@
 package com.amosjuda.workshopmongodb.services;
 
 import com.amosjuda.workshopmongodb.domain.User;
+import com.amosjuda.workshopmongodb.dto.UserDTO;
 import com.amosjuda.workshopmongodb.services.exception.ObjectNotFoundException;
 import com.amosjuda.workshopmongodb.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,5 +26,13 @@ public class UserService {
             throw new ObjectNotFoundException("Objeto não encontrado");
         }
         return user.get();
+    }
+
+    public User insert(User obj) {
+        return userRepository.insert(obj);
+    }
+
+    public User fromDTO(UserDTO objDto) {
+        return new User(objDto.getId(), objDto.getName(), objDto.getEmail());
     }
 }
